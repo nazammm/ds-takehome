@@ -9,5 +9,14 @@ WITH rfm_data AS (
     SUM(payment_value) AS monetary
   FROM e_commerce_transactions
   GROUP BY customer_id
+),
+
+-- Hitung nilai rata-rata RFM
+avg_values AS (
+  SELECT
+    AVG(recency) AS avg_recency,
+    AVG(frequency) AS avg_frequency,
+    AVG(monetary) AS avg_monetary
+  FROM rfm_data
 )
-SELECT * FROM rfm_data;
+SELECT * FROM avg_values;
